@@ -23,7 +23,7 @@ class CategoriaDAO:
 
     def listar(self):
         self.abrir()
-        self.objetos.sort(key = lambda x : x.descricao)
+        self.objetos.sort(key = lambda x : x.id)
         return self.objetos
     
     def listar_id(self, id):

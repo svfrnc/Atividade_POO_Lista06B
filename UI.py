@@ -1,7 +1,7 @@
-from Cliente import Cliente, ClienteDAO
-from Categoria import Categoria, CategoriaDAO
-from Produto import Produto, ProdutoDAO
-
+# from Cliente import Cliente, ClienteDAO
+# from Categoria import Categoria, CategoriaDAO
+# from Produto import Produto, ProdutoDAO
+from View import View
 class UI:
     @staticmethod
     def main():
@@ -39,13 +39,14 @@ class UI:
         nome = input("Informe o nome: ")
         email = input("Informe o e-mail: ")
         fone = input("Informe o fone: ")
-        c = Cliente(0, nome, email, fone)
-        ClienteDAO.inserir(c)
+        View.cliente_inserir(nome, email, fone)
+
     @staticmethod
     def cliente_listar():                            
         print("Listagem de Clientes")
-        for c in ClienteDAO.listar():
+        for c in View.cliente_listar():
             print(c)
+
     @staticmethod
     def cliente_atualizar():                         
         UI.cliente_listar()
@@ -53,41 +54,38 @@ class UI:
         nome = input("Informe o novo nome: ")
         email = input("Informe o novo e-mail: ")
         fone = input("Informe o novo fone: ")
-        c = Cliente(id, nome, email, fone)
-        ClienteDAO.atualizar(c)
+        View.cliente_atualizar(id, nome, email, fone)
+
     @staticmethod
     def cliente_excluir():                           
         UI.cliente_listar()
         id = int(input("Informe o id do cliente a ser excluído: "))
-        c = Cliente(id, "", "", "")
-        ClienteDAO.excluir(c)
+        View.cliente_excluir(id)
 
 #CATEGORIA
     @staticmethod
     def categoria_inserir():                           
         print("Cadastro de Categorias")
         desc = input("Informe a descrição: ")
-        c = Categoria(0, desc)
-        CategoriaDAO().inserir(c)
+        View.categoria_inserir(desc)
+
     @staticmethod
     def categoria_listar():                            
         print("Listagem de Categorias")
-        for c in CategoriaDAO().listar(): print(c)
+        for c in View.categoria_listar(): print(c)
 
     @staticmethod
     def categoria_atualizar():
         UI.categoria_listar()
         id = int(input("Informe o id da categoria a ser atualizado: "))
         desc = input("Informe a nova descrição: ")
-        c = Categoria(id, desc)
-        CategoriaDAO().atualizar(c)
+        View.acategoria_atualizar(id, desc)
 
     @staticmethod
     def categoria_excluir():
         UI.categoria_listar()
         id = int(input("Informe o id da categoria a ser excluído: "))
-        c = Categoria(id, "")
-        CategoriaDAO().excluir(c)
+        View.categoria_excluir(id)
 
 # PRODUTO
     @staticmethod
@@ -97,13 +95,12 @@ class UI:
         preco = float(input("Informe o preço: "))
         estoque = int(input("Informe a quantidade em estoque: "))
         idCategoria = int(input("Insira a categoria do produto: "))
-        p = Produto(0, descricao, preco, estoque, idCategoria)
-        ProdutoDAO().inserir(p)
+        View.categoria_inserir(descricao, preco, estoque, idCategoria)
 
     @staticmethod
     def produto_listar():
         print("Listagem de Produtos")
-        for p in ProdutoDAO().listar():
+        for p in View.produto_listar():
             print(p)
     
     @staticmethod
@@ -114,15 +111,13 @@ class UI:
         preco = float(input("Insira o novo preço: "))
         estoque = int(input("Insira a nova quantidade em estoque: "))
         idCategoria = int(input("Insira o id da nova categoria do produto: "))
-        p = Produto(id, descricao, preco, estoque, idCategoria)
-        ProdutoDAO().atualizar(p)
+        View.produto_atualizar(id, descricao, preco, estoque, idCategoria)
     
     @staticmethod
     def produto_excluir():
         UI.produto_listar()
         id = int(input("Insira o id do produto a ser excluído: "))
-        p = Produto(id, "", 0.0, 0, 0)
-        ProdutoDAO().excluir(p)
+        View.produto_excluir(id)
 
 
 UI.main()
