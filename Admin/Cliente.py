@@ -1,13 +1,14 @@
 import json
 
 class Cliente:
-    def __init__(self, id, nome, email, fone):
+    def __init__(self, id, nome, email, senha, fone):
         self.id = id
         self.nome = nome
         self.email = email
+        self.senha = senha
         self.fone = fone
     def __str__(self):
-        return f"{self.id} - {self.nome} - {self.email} - {self.fone}"
+        return f"{self.id} - {self.nome} - {self.email} - {self.senha} {self.fone}"
     
 class ClienteDAO:
     objetos = []
