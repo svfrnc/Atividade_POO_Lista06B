@@ -1,6 +1,6 @@
 from Admin.Cliente import Cliente, ClienteDAO
 
-class login:
+class Login:
     def __init__(self, email: str, senha: str):
         self.email = email
         self.senha = senha

@@ -1,7 +1,7 @@
 from Admin.Cliente import Cliente, ClienteDAO
 from Admin.Produto import Produto, ProdutoDAO
 from Admin.Categoria import Categoria, CategoriaDAO
-from Cliente.Carrinho import carrinho, CarrinhoDAO
+from Cliente.Carrinho import Carrinho, CarrinhoDAO
 
 class View:
     #CLIENTE

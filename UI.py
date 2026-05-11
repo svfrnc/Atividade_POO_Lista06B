@@ -1,6 +1,6 @@
 from Admin.View import View as AdminView
 from Visitante.View import View as LoginView
-from Cliente.view import View as ClienteView
+from Cliente.View import View as ClienteView
 
 class UI:
     #CRIAÇÃO DE CONTA OU LOGIN

@@ -1,6 +1,6 @@
 import json
 
-class carrinho:
+class Carrinho:
     def __init__(self, id: int, idProduto: int, descricao: str, quantidade: int):
         self.id = id
         self.idProduto = idProduto

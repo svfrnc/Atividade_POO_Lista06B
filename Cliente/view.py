@@ -1,4 +1,4 @@
-from .Carrinho import Carrinho, CarrinhoDAO
+from Cliente.Carrinho import Carrinho, CarrinhoDAO
 from Admin.Produto import Produto, ProdutoDAO
 
 class View:
