@@ -1,4 +1,4 @@
-from .Login import Login, LoginDAO
+from Visitante.Login import Login, LoginDAO
 from Admin.Cliente import Cliente, ClienteDAO
 
 class View:

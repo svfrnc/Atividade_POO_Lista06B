@@ -1,13 +1,13 @@
 from Admin.View import View as AdminView
 from Visitante.View import View as LoginView
-from Cliente.View import View as ClienteView
+from Cliente.view import View as ClienteView
 
 class UI:
     #CRIAÇÃO DE CONTA OU LOGIN
     @staticmethod
     def home():
         print("Digite 1 para criar conta.")
-        print("Digite 2 para criar logar no sistema.")
+        print("Digite 2 para iniciar sessão no sistema.")
         print("Digite 0 para fechar o sistema.")
         resposta = int(input("Resposta: "))
         if resposta == 1:
@@ -209,7 +209,7 @@ class UI:
         # p = Produto(id, "", 0.0, 0, 0)
         AdminView.produto_excluir(id)
 
-# CLIENTE (CARRINHO E COMPRAS)
+# (CARRINHO E COMPRAS)
     @staticmethod
     def listar_produtos():
         print("Listagem de Produtos Disponíveis")

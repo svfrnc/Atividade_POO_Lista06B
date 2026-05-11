@@ -16,7 +16,7 @@ class LoginDAO:
         ClienteDAO.abrir()
 
         for cliente in ClienteDAO.objetos:
-            if (Cliente.email == email) and (Cliente.senha == senha):
+            if (cliente.email == email) and (cliente.senha == senha):
                 cls.user_logado = True
                 return True
         
