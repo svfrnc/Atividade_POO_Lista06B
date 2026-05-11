@@ -76,10 +76,10 @@ class CarrinhoDAO:
             with open("Cliente/carrinhos.json", mode="r") as arquivo:
                 dados = json.load(arquivo)
                 for obj in dados.get("objetos", []):
-                    c = Carrinho(obj["id"], obj["idProduto"], obj["descricao"], obj["quantidade"])
+                    c = carrinho(obj["id"], obj["idProduto"], obj["descricao"], obj["quantidade"])
                     CarrinhoDAO.objetos.append(c)
                 for obj in dados.get("produtos_comprados", []):
-                    c = Carrinho(obj["id"], obj["idProduto"], obj["descricao"], obj["quantidade"])
+                    c = carrinho(obj["id"], obj["idProduto"], obj["descricao"], obj["quantidade"])
                     CarrinhoDAO.produtos_comprados.append(c)
         except FileNotFoundError:
             pass
