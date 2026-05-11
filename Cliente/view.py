@@ -1,13 +1,36 @@
-from Cliente.login import login, loginDAO
-from Admin.Cliente import Cliente, ClienteDAO
+from .Carrinho import Carrinho, CarrinhoDAO
+from Admin.Produto import Produto, ProdutoDAO
 
 class View:
+    # CARRINHO
     @staticmethod
-    def criar_conta(nome, senha, email, fone):
-        c = Cliente(0, nome, senha, email, fone)
-        ClienteDAO.inserir(c)
+    def listar_produtos():
+        return ProdutoDAO().listar()
     
     @staticmethod
-    def login(email, senha) -> bool:
-        logado = loginDAO.logado(email, senha)
-        return logado
+    def inserir_produto_carrinho(idProduto, quantidade):
+        produto = ProdutoDAO().listar_id(idProduto)
+
+        if produto is None:
+            return False
+        
+        carrinho_item = Carrinho(id = 0, idProduto = idProduto, descricao = produto.descricao, quantidade = quantidade)
+
+        CarrinhoDAO().inserir_produto_carrinho(carrinho_item)
+        return True
+    
+    @staticmethod
+    def visualizar_carrinho():
+        return CarrinhoDAO().visualizar_carrinho()
+    
+    @staticmethod
+    def comprar_carrinho():
+        return CarrinhoDAO().comprar_carrinho()
+    
+    @staticmethod
+    def listar_compras():
+        return CarrinhoDAO().listar_compras()
+    
+    @staticmethod
+    def limpar_carrinho():
+        return CarrinhoDAO().limpar_carrinho()
