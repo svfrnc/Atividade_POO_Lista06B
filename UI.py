@@ -118,7 +118,6 @@ class UI:
         email = input("Informe o e-mail: ")
         senha = input("Informe a senha: ")
         fone = input("Informe o fone: ")
-        # c = View(0, nome, email, fone)
         AdminView.cliente_inserir(nome, email, senha, fone)
 
     @staticmethod
@@ -135,7 +134,6 @@ class UI:
         email = input("Informe o novo e-mail: ")
         senha = input("Informe a nova senha: ")
         fone = input("Informe o novo fone: ")
-        # c = Cliente(id, nome, email, fone)
         AdminView.cliente_atualizar(id, nome, email, senha, fone)
 
     @staticmethod
@@ -171,7 +169,6 @@ class UI:
     def categoria_excluir():
         UI.categoria_listar()
         id = int(input("Qual o id da categoria a ser excluído: "))
-        # c = Categoria(id, "")
         AdminView.categoria_excluir(id)
 
 # PRODUTO POR ADMIN
@@ -182,7 +179,6 @@ class UI:
         preco = float(input("Informe o preço: "))
         estoque = int(input("Informe a quantidade em estoque: "))
         idCategoria = int(input("Insira a categoria do produto: "))
-        # p = Produto(0, descricao, preco, estoque, idCategoria)
         AdminView.produto_inserir(descricao, preco, estoque, idCategoria)
 
     @staticmethod
@@ -199,14 +195,12 @@ class UI:
         preco = float(input("Insira o novo preço: "))
         estoque = int(input("Insira a nova quantidade em estoque: "))
         idCategoria = int(input("Insira o id da nova categoria do produto: "))
-        # p = Produto(id, descricao, preco, estoque, idCategoria)
         AdminView.produto_atualizar(id, descricao, preco, estoque, idCategoria)
 
     @staticmethod  
     def produto_excluir():
         UI.produto_listar()
         id = int(input("Insira o id do produto a ser excluído: "))
-        # p = Produto(id, "", 0.0, 0, 0)
         AdminView.produto_excluir(id)
 
 # (CARRINHO E COMPRAS)
