@@ -7,7 +7,7 @@ class UI:
     @staticmethod
     def home():
         print("Digite 1 para criar conta.")
-        print("Digite 2 para criar logar no sistema.")
+        print("Digite 2 para efetuar o login no sistema.")
         print("Digite 0 para fechar o sistema.")
         resposta = int(input("Resposta: "))
         if resposta == 1:
