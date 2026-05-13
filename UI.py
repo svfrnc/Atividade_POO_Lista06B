@@ -24,25 +24,24 @@ class UI:
         email = input("Informe o e-mail: ")
         senha = input("Informe a senha: ")
         fone = input("Informe o fone: ")
-        # c = View(0, nome, email, fone)
         AdminView.cliente_inserir(nome, email, senha, fone)
         UI.home()
 
     @staticmethod
     def validacao():
-        print("Forneça seu email e senha para logar no sistema: ")
+        print("Digite seu email e senha para logar no sistema: ")
         email = input("Email: ")
         senha = input("Senha: ")
 
-        if LoginView.login(email, senha): #retorna o bool da função para adm
+        if LoginView.login(email, senha): 
             if (email == "admin@gmail.com") and (senha == "1234"):
                 print("ADMIN logado.")
                 UI.main()
             else: 
-                print("Login realizado com sucesso!")
+                print("Login realizado com sucesso.")
                 UI.cliente_main()
         else:
-            print("Email e/ou senha incorretos!")
+            print("Email e/ou senha incorretos.")
             UI.validacao()
 
     @staticmethod
@@ -134,7 +133,7 @@ class UI:
     @staticmethod
     def cliente_excluir():                           
         UI.cliente_listar()
-        id = int(input("Qual o id do cliente a ser excluído: "))
+        id = int(input("Digite o ID do cliente a ser excluído: "))
         AdminView.cliente_excluir(id)
 
 #CATEGORIA POR ADMIN
@@ -153,14 +152,14 @@ class UI:
     @staticmethod
     def categoria_atualizar():
         UI.categoria_listar()
-        id = int(input("Qual o id da categoria a ser atualizado: "))
+        id = int(input("Informe o ID da categoria a ser atualizado: "))
         desc = input("Informe a nova descrição: ")
         AdminView.categoria_atualizar(id, desc)
 
     @staticmethod
     def categoria_excluir():
         UI.categoria_listar()
-        id = int(input("Qual o id da categoria a ser excluído: "))
+        id = int(input("Digite o ID da categoria a ser excluído: "))
         AdminView.categoria_excluir(id)
 
 # PRODUTO POR ADMIN
@@ -192,7 +191,7 @@ class UI:
     @staticmethod  
     def produto_excluir():
         UI.produto_listar()
-        id = int(input("Insira o id do produto a ser excluído: "))
+        id = int(input("Insira o ID do produto a ser excluído: "))
         AdminView.produto_excluir(id)
 
     @staticmethod
@@ -204,7 +203,7 @@ class UI:
     @staticmethod
     def inserir_produto():
         UI.listar_produtos()
-        idProduto = int(input("Insira o id do produto a adicionar: "))
+        idProduto = int(input("Insira o id do produto a ser adicionado: "))
         quantidade = int(input("Informe a quantidade: "))
         if ClienteView.inserir_produto_carrinho(idProduto, quantidade):
             print("Produto adicionado ao carrinho.")
