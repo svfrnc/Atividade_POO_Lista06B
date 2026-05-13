@@ -1,15 +1,14 @@
 import json
 
 class Carrinho:
-    def __init__(self, id: int, idProduto: int, descricao: str, quantidade: int):
+    def __init__ (self, id: int, idProduto: int, descricao: str, quantidade: int):
         self.id = id
         self.idProduto = idProduto
         self.descricao = descricao
         self.quantidade = quantidade
-
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Carrinho #{self.id} - Produto #{self.idProduto} - {self.descricao} - Quantidade: {self.quantidade}"
-        pass
+    
 class CarrinhoDAO:
     objetos = []
     produtos_comprados = []
@@ -76,10 +75,10 @@ class CarrinhoDAO:
             with open("Cliente/carrinhos.json", mode="r") as arquivo:
                 dados = json.load(arquivo)
                 for obj in dados.get("objetos", []):
-                    c = carrinho(obj["id"], obj["idProduto"], obj["descricao"], obj["quantidade"])
+                    c = Carrinho(obj["id"], obj["idProduto"], obj["descricao"], obj["quantidade"])
                     CarrinhoDAO.objetos.append(c)
                 for obj in dados.get("produtos_comprados", []):
-                    c = carrinho(obj["id"], obj["idProduto"], obj["descricao"], obj["quantidade"])
+                    c = Carrinho(obj["id"], obj["idProduto"], obj["descricao"], obj["quantidade"])
                     CarrinhoDAO.produtos_comprados.append(c)
         except FileNotFoundError:
             pass

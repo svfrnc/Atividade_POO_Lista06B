@@ -1,4 +1,4 @@
-from Visitante.Login import Login, LoginDAO
+from .Login import Login, LoginDAO
 from Admin.Cliente import Cliente, ClienteDAO
 
 class View:
@@ -11,3 +11,4 @@ class View:
     def login(email, senha) -> bool:
         logado = LoginDAO.logado(email, senha)
         return logado
+        
