@@ -8,55 +8,61 @@ class Categoria:
         return f"{self.id} - {self.descricao}"
     
 class CategoriaDAO:
-    def __init__(self):
-        self.objetos = []
+    objetos = []
 
-    def inserir(self, obj):
-        self.abrir()
-        if len(self.objetos) == 0: 
+    @staticmethod
+    def inserir(obj):
+        CategoriaDAO.abrir()
+        if len(CategoriaDAO.objetos) == 0: 
             id = 1
         else: 
-            id = (max(self.objetos, key = lambda x : x.id)).id + 1
+            id = (max(CategoriaDAO.objetos, key = lambda x : x.id)).id + 1
         obj.id = id
-        self.objetos.append(obj)
-        self.salvar()
+        CategoriaDAO.objetos.append(obj)
+        CategoriaDAO.salvar()
 
-    def listar(self):
-        self.abrir()
-        self.objetos.sort(key = lambda x : x.descricao)
-        return self.objetos
+    @staticmethod
+    def listar():
+        CategoriaDAO.abrir()
+        CategoriaDAO.objetos.sort(key = lambda x : x.descricao)
+        return CategoriaDAO.objetos
     
-    def listar_id(self, id):
-        self.abrir()
-        for obj in self.objetos:
+    @staticmethod
+    def listar_id(id):
+        CategoriaDAO.abrir()
+        for obj in CategoriaDAO.objetos:
             if obj.id == id: 
                 return obj
         return None    
         
-    def atualizar(self, obj):
-        x = self.listar_id(obj.id)
+    @staticmethod
+    def atualizar(obj):
+        x = CategoriaDAO.listar_id(obj.id)
         if x != None:
-            self.objetos.remove(x)
-            self.objetos.append(obj)
-            self.salvar()
+            CategoriaDAO.objetos.remove(x)
+            CategoriaDAO.objetos.append(obj)
+            CategoriaDAO.salvar()
 
-    def excluir(self, obj):
-        x = self.listar_id(obj.id)
+    @staticmethod
+    def excluir(obj):
+        x = CategoriaDAO.listar_id(obj.id)
         if x != None:
-            self.objetos.remove(x)
-            self.salvar()
+            CategoriaDAO.objetos.remove(x)
+            CategoriaDAO.salvar()
 
-    def salvar(self):
+    @staticmethod
+    def salvar():
         with open("categorias.json", mode="w") as arquivo:
-            json.dump(self.objetos, arquivo, default = vars)
+            json.dump(CategoriaDAO.objetos, arquivo, default = vars)
                          
-    def abrir(self):
-        self.objetos = []
+    @staticmethod
+    def abrir():
+        CategoriaDAO.objetos = []
         try:
             with open("categorias.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     c = Categoria(obj["id"], obj["descricao"])
-                    self.objetos.append(c)        
+                    CategoriaDAO.objetos.append(c)        
         except FileNotFoundError:
-            self.objetos = []
+            CategoriaDAO.objetos = []

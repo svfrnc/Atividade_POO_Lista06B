@@ -10,55 +10,61 @@ class Produto:
         return f"{self.id} - {self.descricao} - {self.preco} - {self.estoque} - {self.idCategoria}"
     
 class ProdutoDAO:
-    def __init__(self):
-        self.objetos: list[Produto] = []
+    objetos: list[Produto] = []
 
-    def inserir(self, obj: Produto) -> None:
-        self.abrir()
-        if len(self.objetos) == 0:
+    @staticmethod
+    def inserir(obj: Produto) -> None:
+        ProdutoDAO.abrir()
+        if len(ProdutoDAO.objetos) == 0:
             id = 1
         else:
-            id = (max(self.objetos, key = lambda x : x.id)).id + 1
+            id = (max(ProdutoDAO.objetos, key = lambda x : x.id)).id + 1
         obj.id = id
-        self.objetos.append(obj)
-        self.salvar()
+        ProdutoDAO.objetos.append(obj)
+        ProdutoDAO.salvar()
     
-    def listar(self) -> list[Produto]:
-        self.abrir()
-        self.objetos.sort(key = lambda x : x.descricao)
-        return self.objetos
+    @staticmethod
+    def listar() -> list[Produto]:
+        ProdutoDAO.abrir()
+        ProdutoDAO.objetos.sort(key = lambda x : x.descricao)
+        return ProdutoDAO.objetos
     
-    def listar_id(self, id: int) -> Produto | None:
-        self.abrir()
-        for obj in self.objetos:
+    @staticmethod
+    def listar_id(id: int) -> Produto | None:
+        ProdutoDAO.abrir()
+        for obj in ProdutoDAO.objetos:
             if obj.id == id:
                 return obj
         return None
     
-    def atualizar(self, obj: Produto) -> None:
-        x = self.listar_id(obj.id)
+    @staticmethod
+    def atualizar(obj: Produto) -> None:
+        x = ProdutoDAO.listar_id(obj.id)
         if x != None:
-            self.objetos.remove(x)
-            self.objetos.append(obj)
-            self.salvar() 
+            ProdutoDAO.objetos.remove(x)
+            ProdutoDAO.objetos.append(obj)
+            ProdutoDAO.salvar() 
 
-    def excluir(self, obj: Produto) -> None:
-        x = self.listar_id(obj.id)
+    @staticmethod
+    def excluir(obj: Produto) -> None:
+        x = ProdutoDAO.listar_id(obj.id)
         if x != None:
-            self.objetos.remove(x)
-            self.salvar()
+            ProdutoDAO.objetos.remove(x)
+            ProdutoDAO.salvar()
 
-    def salvar(self) -> None:
+    @staticmethod
+    def salvar() -> None:
         with open("produtos.json", mode = "w") as arquivo:
-            json.dump(self.objetos, arquivo, default = vars)
+            json.dump(ProdutoDAO.objetos, arquivo, default = vars)
 
-    def abrir(self) -> None:
-        self.objetos = []
+    @staticmethod
+    def abrir() -> None:
+        ProdutoDAO.objetos = []
         try:
             with open("produtos.json", mode = "r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     p = Produto(obj["id"], obj["descricao"], obj["preco"], obj["estoque"], obj["idCategoria"])
-                    self.objetos.append(p)
+                    ProdutoDAO.objetos.append(p)
         except FileNotFoundError:
-            self.objetos = []
+            ProdutoDAO.objetos = []

@@ -170,7 +170,7 @@ class UI:
         descricao = input("Informe a descrição: ")
         preco = float(input("Informe o preço: "))
         estoque = int(input("Informe a quantidade em estoque: "))
-        idCategoria = int(input("Insira a categoria do produto: "))
+        idCategoria = int(input("Insira o ID da categoria do produto: "))
         AdminView.produto_inserir(descricao, preco, estoque, idCategoria)
 
     @staticmethod
