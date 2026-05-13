@@ -33,13 +33,14 @@ class UI:
         email = input("Email: ")
         senha = input("Senha: ")
 
-        if LoginView.login(email, senha): 
-            if (email == "admin@gmail.com") and (senha == "1234"):
-                print("ADMIN logado.")
-                UI.main()
-            else: 
-                print("Login realizado com sucesso.")
-                UI.cliente_main()
+    # Verifica primeiro se é o admin fixo
+        if email == "admin@gmail.com" and senha == "1234":
+            print("ADMIN logado.")
+            UI.main()
+    # Se não for admin, tenta o login normal para clientes
+        elif LoginView.login(email, senha): 
+            print("Login realizado com sucesso.")
+            UI.cliente_main()
         else:
             print("Email e/ou senha incorretos.")
             UI.validacao()

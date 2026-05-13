@@ -37,7 +37,7 @@ class View:
     @staticmethod
     def categoria_atualizar(desc):
         cat = Categoria(0, desc)
-        return CategoriaDAO.atualizar
+        return CategoriaDAO.atualizar(cat)
     
     @staticmethod
     def categoria_excluir(obj):
